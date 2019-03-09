@@ -2,24 +2,27 @@ import numpy as np
 from sklearn.externals import joblib
 import pickle
 import os
+from sklearn import metrics
+
 script_dir = os.path.dirname(__file__)
 
 #falta agregar las predicciones correctas
 def pre_match_predict(season,team1,team2,city):
-    rel_path = "pre_pred/pre_pred.pkl"
+    rel_path = "pre_pred/entrenamiento_general.pkl"
     abs_file_path = os.path.join(script_dir, rel_path)
-    regressor = joblib.load(abs_file_path)
+    modelo_entrenado = joblib.load(abs_file_path)
 
-    rel_path = "pre_pred/pre_hot.pkl"
+    rel_path = "pre_pred/X_test_general.pkl"
     abs_file_path = os.path.join(script_dir, rel_path)
-    enc = pickle.load( open( abs_file_path, "rb" ))
+    X_test = pickle.load( open( abs_file_path, "rb" ))
 
-    #X_test = [[season,team1,team2,city]]
-    #X_test = enc.transform(X_test).toarray()
-    #print(len(X_test[0]))
-    #y_pred = regressor.predict(X_test)
-    #print("our_prediction:",0.9)
-    return 0.9
+    rel_path = "pre_pred/y_test_general.pkl"
+    abs_file_path = os.path.join(script_dir, rel_path)
+    y_test = pickle.load( open( abs_file_path, "rb" ))
+
+    y_pred = modelo_entrenado.predict(X_test)
+
+    return metrics.accuracy_score(y_test, y_pred)
 
 
 
