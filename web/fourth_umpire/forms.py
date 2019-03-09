@@ -1,61 +1,35 @@
 from django import forms
 from .models import Match
 
-team_choice = (
-        (1,	'Sunrisers Hyderabad'),
-        (2,	'Royal Challengers Bangalore'),
-        (3,	'Chennai Super Kings'),
-        (4,	'Kings XI Punjab'),
-        (5,	'Rajasthan Royals'),
-        (6,	'Delhi Daredevils'),
-        (7,	'Mumbai Indians'),
-        (8,	'Kolkata Knight Riders'),
+eleccion_carrera = (
+    (1,	'Ing. Electrónica'),
+    (2,	'Med. Veterinaria'),
+    (3,	'Ing. Eléctrica'),
+    (4,	'Ing. Sistemas'),
+    (5,	'Ing. Mecatrónica'),
 )
 
-city_choice = (
-    (1	, 'Hyderabad'),
-    (2	, 'Pune'),
-    (3	, 'Rajkot'),
-    (4	, 'Indore'),
-    (5	, 'Bangalore'),
-    (6	, 'Mumbai'),
-    (7	, 'Delhi'),
-    (8	, 'Chennai'),
-    (9	, 'Sharjah'),
-    (10	, 'Ranchi'),
-    (11	, 'Patna'),
-    (12	, 'Kolkata'),
-    (13	, 'Chandigarh'),
-    (14	, 'Kanpur'),
-    (15	, 'Jaipur'),
-    (24	, 'Ahmedabad'),
-    (25	, 'Cuttack'),
-    (26	, 'Nagpur'),
-    (27	, 'Dharamsala'),
-    (28	, 'Kochi'),
-    (29	, 'Visakhapatnam'),
-    (30	, 'Raipur'),
+eleccion_ciclo = (
+    (1,	'1er Ciclo'),
+    (2,	'2do Ciclo'),
+    (3,	'3er Ciclo'),
+    (4,	'4to Ciclo'),
+    (5,	'5to Ciclo'),
+    (6,	'6to Ciclo'),
+    (7,	'7mo Ciclo'),
+    (8,	'8vo Ciclo'),
+    (9,	'9no Ciclo'),
+    (10, '10mo Ciclo'),
+
+)
+
+eleccion_sede = (
+    (1	, 'Cuenca'),
+    (2	, 'Quito'),
+    (3	, 'Guayaquil'),
 )
 
 class PreMatch(forms.Form):
-    team1 = forms.ChoiceField(choices=team_choice, widget=forms.Select())
-    team2 = forms.ChoiceField(choices=team_choice, widget=forms.Select())
-    venue = forms.ChoiceField(choices=city_choice, widget=forms.Select())
-
-
-class InningsFirst(forms.Form):
-    team1 = forms.ChoiceField(choices=team_choice, widget=forms.Select(),label="Batting Team")
-    team2 = forms.ChoiceField(choices=team_choice, widget=forms.Select(),label="Bowling Team")
-    venue = forms.ChoiceField(choices=city_choice, widget=forms.Select())
-    runs = forms.IntegerField()
-    overs_played = forms.IntegerField()
-    wickets_fallen = forms.IntegerField()
-
-class InningsSecond(forms.Form):
-    team1 = forms.ChoiceField(choices=team_choice, widget=forms.Select(),label="Current Batting Team")
-    team2 = forms.ChoiceField(choices=team_choice, widget=forms.Select(),label="Current Bowling Team")
-    venue = forms.ChoiceField(choices=city_choice, widget=forms.Select())
-    runs = forms.IntegerField()
-    wickets_fallen = forms.IntegerField()
-    overs_played = forms.IntegerField()
-    target_set = forms.IntegerField()
+    team1 = forms.ChoiceField(choices=eleccion_carrera, widget=forms.Select())
+    team2 = forms.ChoiceField(choices=eleccion_ciclo, widget=forms.Select())
+    venue = forms.ChoiceField(choices=eleccion_sede, widget=forms.Select())
