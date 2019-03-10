@@ -5,3 +5,6 @@ Un dashboard simple en Django que permite visualizar resultados obtenidos de mac
 
 * user: test
 * pass: test
+
+**Based on:**
+* https://github.com/aasis21/4th_umpire
