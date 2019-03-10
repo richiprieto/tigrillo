@@ -23,3 +23,16 @@ def pre_match_predict(season,team1,team2,city):
     y_pred = modelo_entrenado.predict(X_test)
 
     return metrics.accuracy_score(y_test, y_pred)
+
+def get_team(id):
+    teams = {
+            "1":'Sunrisers Hyderabad',
+            "2":'Royal Challengers Bangalore',
+            "3":'Chennai Super Kings',
+            "4":'Kings XI Punjab',
+            "5":'Rajasthan Royals',
+            "6":'Delhi Daredevils',
+            "7":'Mumbai Indians',
+            "8":'Kolkata Knight Riders'
+    }
+    return teams[id]
