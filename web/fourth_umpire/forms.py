@@ -1,5 +1,6 @@
 from django import forms
-from .models import Match
+#from .models import Match
+from .models import *
 
 eleccion_carrera = (
     (1,	'Ing. Electrónica'),
@@ -33,3 +34,8 @@ class PreMatch(forms.Form):
     team1 = forms.ChoiceField(choices=eleccion_carrera, widget=forms.Select())
     team2 = forms.ChoiceField(choices=eleccion_ciclo, widget=forms.Select())
     venue = forms.ChoiceField(choices=eleccion_sede, widget=forms.Select())
+
+class DataSetForm(forms.ModelForm):
+    class Meta:
+        model = DataSet
+        fields = ('escuela', 'sexo', 'edad', 'direccion')

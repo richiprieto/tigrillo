@@ -1,0 +1,52 @@
+{% extends 'fourth_umpire/base.html' %}
+{% block body %}
+
+  <div class="add_buttons">
+
+    <div class="button-group">
+      <a href="{% url 'display_dataset' %}" class="btn btn-primary btn-md btn-trim" role="button"> DataSet</a>
+      <a href="{% url 'add_dataset' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+    </div>
+
+  </div>
+
+  <div>
+
+    <h4>Currently Viewing {{ header }}</h4>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Escuela</th>
+        <th>Sexo</th>
+        <th>Edad</th>
+        <th>Direccion</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for item in items %}
+
+      <tr>
+        <td>{{ item.pk }}
+        <td>{{ item.escuela}}</td>
+        <td>{{ item.sexo }} $</td>
+        <td>{{ item.edad }}</td>
+        <td>{{ item.direccion }}</td>
+
+        <td>
+            <a href="{% url 'edit_dataset' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_dataset' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
