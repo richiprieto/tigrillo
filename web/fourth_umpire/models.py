@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+
+from import_export import resources
 # Create your models here.
 
 class Match(models.Model):
@@ -30,3 +32,7 @@ class Data(models.Model):
 
 class DataSet(Data):
     pass
+
+class PersonResource(resources.ModelResource):
+    class Meta:
+        model = DataSet

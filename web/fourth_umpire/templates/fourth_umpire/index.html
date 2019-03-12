@@ -1,14 +1,28 @@
 {% extends 'fourth_umpire/base.html' %}
 {% block body %}
-
-  <div class="add_buttons">
-
-    <div class="button-group">
-      <a href="{% url 'display_dataset' %}" class="btn btn-primary btn-md btn-trim" role="button"> DataSet</a>
-      <a href="{% url 'add_dataset' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <form class="md-form" action="{% url 'simple_upload' %}" method="post" enctype="multipart/form-data">
+         {% csrf_token %}
+        <div class="file-field">
+          <div class="btn btn-primary btn-sm float-left">
+            <input type="file" name="myfile">
+            <button type="submit" class="btn btn-warning btn-sm btn-pad">Upload</button>
+          </div>
+        </div>
+      </form>
     </div>
-
+    <div class="col-sm">
+      <div class="add_buttons">
+        <div class="button-group">
+          <a href="{% url 'display_dataset' %}" class="btn btn-primary btn-md btn-trim" role="button"> View DataSet</a>
+          <a href="{% url 'add_dataset' %}" class="btn btn-warning btn-sm btn-pad" role="button"> Add Record</a>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
   <div>
 

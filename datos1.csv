@@ -1,5 +1,6 @@
-escuela,sexo,edad,direccion
-Tufiño,F,20,U
-Cordova Galarza,F,19,R
-Santa Maria de los Angeles,M,21,U
-Tufiño,M,19,R
+id,escuela,sexo,edad,direccion
+,Manuela Saenz,F,20,U
+,Cordova Galarza,F,19,R
+,Santa Maria de los Angeles,M,21,U
+,Tufiño,M,19,R
+,Hidrobo,F,23,R

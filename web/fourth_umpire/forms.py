@@ -2,6 +2,7 @@ from django import forms
 #from .models import Match
 from .models import *
 
+
 eleccion_carrera = (
     (1,	'Ing. Electrónica'),
     (2,	'Med. Veterinaria'),

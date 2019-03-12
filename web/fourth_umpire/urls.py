@@ -12,6 +12,7 @@ from .views import *
 urlpatterns = [
    url(r'^$', index, name='index'),
    url(r'^DataSet$', display_dataset, name="display_dataset"),
+    url(r'^simple_upload$', simple_upload, name="simple_upload"),
 
    url(r'^add_dataset$', add_dataset, name="add_dataset"),
 
