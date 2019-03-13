@@ -3,26 +3,27 @@ from sklearn.externals import joblib
 import pickle
 import os
 from sklearn import metrics
+import pandas as pd
 
 script_dir = os.path.dirname(__file__)
 
 #falta agregar las predicciones correctas
-def pre_match_predict(season,team1,team2,city):
-    rel_path = "pre_pred/entrenamiento_general.pkl"
+def pre_match_predict(document):
+    rel_path = "pre_pred/entrenamiento_general_kneighbors_80.0inicio.pkl"
     abs_file_path = os.path.join(script_dir, rel_path)
-    modelo_entrenado = joblib.load(abs_file_path)
+    entrenamiento = joblib.load(abs_file_path)
 
-    rel_path = "pre_pred/X_test_general.pkl"
+    rel_path = document
     abs_file_path = os.path.join(script_dir, rel_path)
-    X_test = pickle.load( open( abs_file_path, "rb" ))
+    archivo = pd.read_csv(abs_file_path)
 
-    rel_path = "pre_pred/y_test_general.pkl"
-    abs_file_path = os.path.join(script_dir, rel_path)
-    y_test = pickle.load( open( abs_file_path, "rb" ))
+    cod_est = archivo.cod_est
+    y_pruebas = archivo.aprueba
+    x_pruebas = archivo.iloc[:,1:30]
+    y_pruebas_predict = pd.Series(entrenamiento.predict(x_pruebas))
+    valor_prediccion = metrics.accuracy_score(y_pruebas, y_pruebas_predict)*100
 
-    y_pred = modelo_entrenado.predict(X_test)
-
-    return metrics.accuracy_score(y_test, y_pred)
+    return valor_prediccion
 
 def get_carrera(id):
     teams = {
