@@ -39,7 +39,7 @@ from .models import *
 class PreMatch(forms.ModelForm):
     class Meta:
         model = Match
-        fields = ('team1', 'team2', 'venue', 'document')
+        fields = ('carrera', 'ciclo', 'sede', 'document')
 
 class DataSetForm(forms.ModelForm):
     class Meta:

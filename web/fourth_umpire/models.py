@@ -12,7 +12,7 @@ class DataMatch(models.Model):
         ('4',	'Ing. Sistemas'),
         ('5',	'Ing. Mecatrónica'),
     )
-    team1 = models.CharField(max_length=1, choices=eleccion_carrera, default='1')
+    carrera = models.CharField(max_length=1, choices=eleccion_carrera, default='1')
     eleccion_ciclo = (
         ('1',	'1er Ciclo'),
         ('2',	'2do Ciclo'),
@@ -25,13 +25,13 @@ class DataMatch(models.Model):
         ('9',	'9no Ciclo'),
         ('10', '10mo Ciclo'),
     )
-    team2 = models.CharField(max_length=1, choices=eleccion_ciclo, default='2')
+    ciclo = models.CharField(max_length=1, choices=eleccion_ciclo, default='1')
     eleccion_sede = (
         ('1'	, 'Cuenca'),
         ('2'	, 'Quito'),
         ('3'	, 'Guayaquil'),
     )
-    venue = models.CharField(max_length=1, choices=eleccion_sede, default='1')
+    sede = models.CharField(max_length=1, choices=eleccion_sede, default='1')
 
     document = models.FileField(upload_to='documents/', blank=True, null=True)
 

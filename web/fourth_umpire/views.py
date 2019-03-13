@@ -20,17 +20,12 @@ def prematch(request):
     if request.method == 'POST':
         title_form = PreMatch(request.POST, request.FILES)
         if title_form.is_valid():
-            team1 = title_form.cleaned_data['team1']
-            team2 = title_form.cleaned_data['team2']
-            venue = title_form.cleaned_data['venue']
+            carrera = title_form.cleaned_data['carrera']
+            ciclo = title_form.cleaned_data['ciclo']
+            sede = title_form.cleaned_data['sede']
             # probab = pre_match_predict("2016",team1,team2,venue)
-            probab = 0.85
-            if probab > 0.5 :
-                winner = get_team(team1)
-                probab = probab * 100
-            else:
-                winner =  get_team(team2)
-                probab = (1- probab) * 100
+            winner = get_carrera(carrera)
+            probab = 0.85 * 100
 
             return render(request, 'fourth_umpire/pre_pred.html', context={'form3': title_form,"winner":winner,"probab":probab})
 

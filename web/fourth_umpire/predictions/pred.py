@@ -24,15 +24,12 @@ def pre_match_predict(season,team1,team2,city):
 
     return metrics.accuracy_score(y_test, y_pred)
 
-def get_team(id):
+def get_carrera(id):
     teams = {
-            "1":'Sunrisers Hyderabad',
-            "2":'Royal Challengers Bangalore',
-            "3":'Chennai Super Kings',
-            "4":'Kings XI Punjab',
-            "5":'Rajasthan Royals',
-            "6":'Delhi Daredevils',
-            "7":'Mumbai Indians',
-            "8":'Kolkata Knight Riders'
+            '1':	'Ing. Electrónica',
+            '2':	'Med. Veterinaria',
+            '3':	'Ing. Eléctrica',
+            '4':	'Ing. Sistemas',
+            '5':	'Ing. Mecatrónica',
     }
     return teams[id]
