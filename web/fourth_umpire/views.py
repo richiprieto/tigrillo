@@ -25,10 +25,16 @@ def prematch(request):
             ciclo = title_form.cleaned_data['ciclo']
             sede = title_form.cleaned_data['sede']
             document = "documents/"+str(title_form.cleaned_data['document'])
-            [probab, cod_est] = pre_match_predict(document)
+            [probab, cod_est, sexo] = pre_match_predict(document)
             winner = get_carrera(carrera)
             cod_est = pd.DataFrame(cod_est)
-            chart = pandas_highcharts.core.serialize(cod_est, render_to='my-chart', output_type='json')
+            #cod_est_html = cod_est.to_html()
+            chart = pandas_highcharts.core.serialize(sexo, render_to='my-chart',
+                                                    output_type='json',
+                                                    kind = "bar",
+                                                    x ="sex",
+                                                    title="Distribucion general por sexo"
+                                                    )
             return render(request, 'fourth_umpire/pre_pred.html', context={'form3': title_form,"winner":winner,"probab":probab,"chart":chart})
 
     else:

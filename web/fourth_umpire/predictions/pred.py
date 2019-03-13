@@ -25,8 +25,20 @@ def pre_match_predict(document):
     frames = [cod_est, y_pruebas, y_pruebas_predict]
     resultado = pd.DataFrame(pd.concat(frames,  axis=1))
     resultado.columns = ["cod_est", "resultados_nuevos_reales", "resultados_nuevos_predecidos"]
+    sexo = graficas(archivo)
+    return valor_prediccion,resultado,sexo
 
-    return valor_prediccion,resultado
+def graficas(archivo):
+    sexo = pd.DataFrame(archivo.groupby('sex')['cod_est'].nunique()).reset_index()
+    transforma = pd.Series(np.where(sexo.sex.values == 0, "Femenino", "Masculino"),
+          sexo.index)
+    sexo.sex = transforma
+    sexo = sexo.rename(columns = {'cod_est':'Sexo'})
+
+    return sexo
+
+
+
 
 def get_carrera(id):
     teams = {
