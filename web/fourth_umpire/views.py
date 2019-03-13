@@ -23,6 +23,8 @@ def prematch(request):
             carrera = title_form.cleaned_data['carrera']
             ciclo = title_form.cleaned_data['ciclo']
             sede = title_form.cleaned_data['sede']
+            document = title_form.cleaned_data['document']
+            print(document)
             # probab = pre_match_predict("2016",team1,team2,venue)
             winner = get_carrera(carrera)
             probab = 0.85 * 100
