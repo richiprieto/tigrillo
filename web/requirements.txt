@@ -3,4 +3,4 @@ django-bootstrap-form
 numpy
 pandas
 scikit-learn
-
+django-import-export
