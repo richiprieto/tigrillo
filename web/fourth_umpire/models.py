@@ -35,8 +35,8 @@ class DataMatch(models.Model):
 
     document = models.FileField(upload_to='documents/', blank=False, null=True)
 
-#    class Meta:
-#        abstract = True
+    class Meta:
+        abstract = True
 
 class Match(DataMatch):
     pass

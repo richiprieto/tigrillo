@@ -22,8 +22,11 @@ def pre_match_predict(document):
     x_pruebas = archivo.iloc[:,1:30]
     y_pruebas_predict = pd.Series(entrenamiento.predict(x_pruebas))
     valor_prediccion = metrics.accuracy_score(y_pruebas, y_pruebas_predict)*100
+    frames = [cod_est, y_pruebas, y_pruebas_predict]
+    resultado = pd.DataFrame(pd.concat(frames,  axis=1))
+    resultado.columns = ["cod_est", "resultados_nuevos_reales", "resultados_nuevos_predecidos"]
 
-    return valor_prediccion
+    return valor_prediccion,resultado
 
 def get_carrera(id):
     teams = {

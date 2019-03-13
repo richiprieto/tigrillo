@@ -14,6 +14,7 @@ from .models import *
 import logging
 import logging.config
 from django.contrib import messages
+import pandas_highcharts.core
 
 # Create your views here.
 def prematch(request):
@@ -24,11 +25,11 @@ def prematch(request):
             ciclo = title_form.cleaned_data['ciclo']
             sede = title_form.cleaned_data['sede']
             document = "documents/"+str(title_form.cleaned_data['document'])
-            #print(document)
-            probab = pre_match_predict(document)
+            [probab, cod_est] = pre_match_predict(document)
             winner = get_carrera(carrera)
-
-            return render(request, 'fourth_umpire/pre_pred.html', context={'form3': title_form,"winner":winner,"probab":probab})
+            cod_est = pd.DataFrame(cod_est)
+            chart = pandas_highcharts.core.serialize(cod_est, render_to='my-chart', output_type='json')
+            return render(request, 'fourth_umpire/pre_pred.html', context={'form3': title_form,"winner":winner,"probab":probab,"chart":chart})
 
     else:
         title_form = PreMatch()

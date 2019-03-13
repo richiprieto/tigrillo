@@ -4,3 +4,4 @@ numpy
 pandas
 scikit-learn
 django-import-export
+pandas-highcharts
