@@ -18,12 +18,13 @@ from django.contrib import messages
 # Create your views here.
 def prematch(request):
     if request.method == 'POST':
-        title_form = PreMatch(request.POST)
+        title_form = PreMatch(request.POST, request.FILES)
         if title_form.is_valid():
             team1 = title_form.cleaned_data['team1']
             team2 = title_form.cleaned_data['team2']
             venue = title_form.cleaned_data['venue']
-            probab = pre_match_predict("2016",team1,team2,venue)
+            # probab = pre_match_predict("2016",team1,team2,venue)
+            probab = 0.85
             if probab > 0.5 :
                 winner = get_team(team1)
                 probab = probab * 100

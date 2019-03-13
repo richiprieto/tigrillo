@@ -4,9 +4,43 @@ from django.utils import timezone
 from import_export import resources
 # Create your models here.
 
-class Match(models.Model):
-    team1 = models.CharField(max_length=30)
-    team2 = models.CharField(max_length=30)
+class DataMatch(models.Model):
+    eleccion_carrera = (
+        ('1',	'Ing. Electrónica'),
+        ('2',	'Med. Veterinaria'),
+        ('3',	'Ing. Eléctrica'),
+        ('4',	'Ing. Sistemas'),
+        ('5',	'Ing. Mecatrónica'),
+    )
+    team1 = models.CharField(max_length=1, choices=eleccion_carrera, default='1')
+    eleccion_ciclo = (
+        ('1',	'1er Ciclo'),
+        ('2',	'2do Ciclo'),
+        ('3',	'3er Ciclo'),
+        ('4',	'4to Ciclo'),
+        ('5',	'5to Ciclo'),
+        ('6',	'6to Ciclo'),
+        ('7',	'7mo Ciclo'),
+        ('8',	'8vo Ciclo'),
+        ('9',	'9no Ciclo'),
+        ('10', '10mo Ciclo'),
+    )
+    team2 = models.CharField(max_length=1, choices=eleccion_ciclo, default='2')
+    eleccion_sede = (
+        ('1'	, 'Cuenca'),
+        ('2'	, 'Quito'),
+        ('3'	, 'Guayaquil'),
+    )
+    venue = models.CharField(max_length=1, choices=eleccion_sede, default='1')
+
+    document = models.FileField(upload_to='documents/', blank=True, null=True)
+
+
+    class Meta:
+        abstract = True
+
+class Match(DataMatch):
+    pass
 
 class Data(models.Model):
 
