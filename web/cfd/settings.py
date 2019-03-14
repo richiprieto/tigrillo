@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fourth_umpire',
-    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +124,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_REDIRECT_URL = '/nominations'
 m_path = os.path.abspath(os.path.dirname(__file__))
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'fourth_umpire/predictions')
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/predictions/'
