@@ -32,4 +32,4 @@ class Match(models.Model):
     )
     sede = models.CharField(max_length=1, choices=eleccion_sede, default='1')
 
-    document = models.FileField(upload_to='documents/', blank=False, null=True)
+    document = models.FileField(upload_to='documents/', blank=False ,null=False)

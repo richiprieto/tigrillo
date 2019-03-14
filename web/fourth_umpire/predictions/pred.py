@@ -37,9 +37,6 @@ def graficas(archivo):
 
     return sexo
 
-
-
-
 def get_carrera(id):
     teams = {
             '1':	'Ing. Electrónica',
