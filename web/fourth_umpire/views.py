@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render,HttpResponse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from fourth_umpire.predictions.pred import *
+from django.core.files.storage import FileSystemStorage
 
 from .forms import *
 from .models import *
@@ -21,6 +22,10 @@ def prematch(request):
             carrera = title_form.cleaned_data['carrera']
             ciclo = title_form.cleaned_data['ciclo']
             sede = title_form.cleaned_data['sede']
+            document = request.FILES['document']
+            fs = FileSystemStorage()
+            filename = fs.save(document.name, document)
+            uploaded_file_url = fs.url(filename)
             document = "documents/"+str(title_form.cleaned_data['document'])
             [probab, cod_est, sexo] = pre_match_predict(document)
             winner = get_carrera(carrera)

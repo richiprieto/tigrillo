@@ -124,6 +124,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_REDIRECT_URL = '/nominations'
 m_path = os.path.abspath(os.path.dirname(__file__))
-MEDIA_ROOT = os.path.join(BASE_DIR, 'fourth_umpire/predictions')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'fourth_umpire/predictions/documents')
 
-MEDIA_URL = '/predictions/'
+MEDIA_URL = '/documents/'
