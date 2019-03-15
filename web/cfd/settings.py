@@ -120,7 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'fourth_umpire/static')
 
 LOGIN_REDIRECT_URL = '/nominations'
 m_path = os.path.abspath(os.path.dirname(__file__))
