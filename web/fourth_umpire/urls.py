@@ -5,6 +5,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.prematch, name='prematch'),
+    url(r'^reporte_personas_pdf/$', views.ReportePersonasPDF.as_view(), name="reporte_personas_pdf"),
 #    url(r'^$', views.upload_csv, name='upload_csv'),
 ]
 

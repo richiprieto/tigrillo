@@ -91,10 +91,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											  </script>
 												<br>
 												<!--<div id="hola">{{tabla}}</div>-->
-												<!--Importante generar reporte con el boton inferior-->
-												<input class="btn btn-success btn-block" type="submit" value="Generar Reporte PDF" />
+												<a href="{% url 'reporte_personas_pdf' %}" class="btn btn-success btn-block" role="button"> Generar Reporte PDF</a>
+						
 												{% endif %}
                     </form>
+										<!--Importante generar reporte con el boton inferior-->
+
+
                 </div>
 		</div>
 	</div>
