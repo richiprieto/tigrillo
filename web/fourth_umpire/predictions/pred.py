@@ -5,6 +5,8 @@ import os
 from sklearn import metrics
 import pandas as pd
 
+import pandas_highcharts.core
+
 script_dir = os.path.dirname(__file__)
 
 #falta agregar las predicciones correctas
@@ -22,20 +24,51 @@ def pre_match_predict(document):
     x_pruebas = archivo.iloc[:,1:30]
     y_pruebas_predict = pd.Series(entrenamiento.predict(x_pruebas))
     valor_prediccion = metrics.accuracy_score(y_pruebas, y_pruebas_predict)*100
-    frames = [cod_est, y_pruebas, y_pruebas_predict]
-    resultado = pd.DataFrame(pd.concat(frames,  axis=1))
-    resultado.columns = ["cod_est", "resultados_nuevos_reales", "resultados_nuevos_predecidos"]
-    sexo = graficas(archivo)
-    return valor_prediccion,resultado,sexo
+    #frames = [cod_est, y_pruebas, y_pruebas_predict]
+    #resultado = pd.DataFrame(pd.concat(frames,  axis=1))
+    #resultado.columns = ["cod_est", "resultados_nuevos_reales", "resultados_nuevos_predecidos"]
+    rel_path = "pre_pred/archivo_prueba_graficar.pkl"
+    resultado = pd.read_pickle(os.path.join(script_dir, rel_path))
+    resultado_predicc = resultado.loc[resultado['prediccion'] == 0]
 
-def graficas(archivo):
-    sexo = pd.DataFrame(archivo.groupby('sex')['cod_est'].nunique()).reset_index()
-    transforma = pd.Series(np.where(sexo.sex.values == 0, "Femenino", "Masculino"),
-          sexo.index)
-    sexo.sex = transforma
-    sexo = sexo.rename(columns = {'cod_est':'Sexo'})
+    [chart_sexo, chart_edad, chart_procedencia, chart_tam_familia] = graficas(resultado_predicc)
 
-    return sexo
+    return valor_prediccion,resultado,chart_sexo,chart_edad,chart_procedencia,chart_tam_familia
+
+#Grafica
+def graficas(dataframe):
+    sexo = pd.DataFrame(dataframe.groupby('sex')['cod_est'].nunique()).reset_index()
+    edad = pd.DataFrame(dataframe.groupby('age')['cod_est'].nunique()).reset_index()
+    procedencia = pd.DataFrame(dataframe.groupby('address')['cod_est'].nunique()).reset_index()
+    tam_familia = pd.DataFrame(dataframe.groupby('famsize')['cod_est'].nunique()).reset_index()
+
+    chart_sexo = pandas_highcharts.core.serialize(sexo, render_to='char_predict',
+                                            output_type='json',
+                                            kind = "bar",
+                                            x ="sex",
+                                            title="Distribucion general por sexo(Femenino-Masculino)"
+                                            )
+    chart_edad = pandas_highcharts.core.serialize(edad, render_to='chart_predict',
+                                            output_type='json',
+                                            kind = "bar",
+                                            x ="age",
+                                            title="Distribucion general por edad"
+                                            )
+    chart_procedencia = pandas_highcharts.core.serialize(procedencia, render_to='chart_predict',
+                                            output_type='json',
+                                            kind = "bar",
+                                            x ="address",
+                                            title="Distribucion general por procedencia(Urbano-Rural)"
+                                            )
+    chart_tam_familia = pandas_highcharts.core.serialize(tam_familia, render_to='chart_predict',
+                                            output_type='json',
+                                            kind = "bar",
+                                            x ="famsize",
+                                            title="Distribucion general por tamaño familiar(GT3-Mayor3, LE3-Menor3)"
+                                            )
+
+
+    return chart_sexo, chart_edad, chart_procedencia, chart_tam_familia
 
 def get_carrera(id):
     teams = {

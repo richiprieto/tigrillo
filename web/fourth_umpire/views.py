@@ -22,7 +22,6 @@ from reportlab.lib import colors
 from reportlab.lib.units import cm
 #
 
-import pandas_highcharts.core
 
 # Create your views here.
 def prematch(request):
@@ -37,22 +36,16 @@ def prematch(request):
             filename = fs.save(document.name, document)
             uploaded_file_url = fs.url(filename)
             document = "documents/"+str(title_form.cleaned_data['document'])
-            [probab, cod_est, sexo] = pre_match_predict(document)
+            [probab, cod_est, chart_sexo, chart_edad, chart_procedencia, chart_tam_familia] = pre_match_predict(document)
             winner = get_carrera(carrera)
             cod_est = pd.DataFrame(cod_est)
-            #cod_est_html = cod_est.to_html()
-            chart = pandas_highcharts.core.serialize(sexo, render_to='my-chart',
-                                                    output_type='json',
-                                                    kind = "bar",
-                                                    x ="sex",
-                                                    title="Distribucion general por sexo"
-                                                    )
-            return render(request, 'fourth_umpire/pre_pred.html', context={'form3': title_form,"winner":winner,"probab":probab,"chart":chart})
-
+            return render(request, 'fourth_umpire/pre_pred.html', context={'form3': title_form,"winner":winner,"probab":probab,"chart_sexo":chart_sexo,
+                                                                            'chart_edad':chart_edad, 'chart_procedencia':chart_procedencia, 'chart_tam_familia':chart_tam_familia})
     else:
         title_form = PreMatch()
 
     return render(request, 'fourth_umpire/pre_pred.html', context={'form3': title_form})
+
 
 #add for report
 class ReportePersonasPDF(View):
