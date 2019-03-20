@@ -85,6 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<br></br>
 												{% if winner %}
 												<script src="https://code.highcharts.com/highcharts.src.js"></script>
+												<pre>{{html_tabla|safe}}</pre>
 												<div id="chart_sexo"></div>
 												<div id="chart_edad"></div>
 												<div id="chart_procedencia"></div>
@@ -96,7 +97,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													new Highcharts.Chart('chart_tam_familia',{{chart_tam_familia|safe}});
 											  </script>
 												<br>
-												<!--<div id="hola">{{tabla}}</div>-->
 												<a href="{% url 'reporte_personas_pdf' %}" class="btn btn-success btn-block" role="button"> Generar Reporte PDF</a>
 
 												{% endif %}

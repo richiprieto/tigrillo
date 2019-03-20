@@ -32,8 +32,8 @@ def pre_match_predict(document):
     resultado_predicc = resultado.loc[resultado['prediccion'] == 0]
 
     [chart_sexo, chart_edad, chart_procedencia, chart_tam_familia] = graficas(resultado_predicc)
-
-    return valor_prediccion,resultado,chart_sexo,chart_edad,chart_procedencia,chart_tam_familia
+    resultado_predicc = resultado_predicc[["cod_est","sex","age","address","famsize","prediccion"]]
+    return valor_prediccion,resultado_predicc,chart_sexo,chart_edad,chart_procedencia,chart_tam_familia
 
 #Grafica
 def graficas(dataframe):
