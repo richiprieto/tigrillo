@@ -48,7 +48,7 @@ def prematch(request):
     return render(request, 'fourth_umpire/pre_pred.html', context={'form3': title_form})
 
 
-#add for report
+#agregamos el reporte
 class ReportePersonasPDF(View):
     def cabecera(self,pdf):
             #Utilizamos el archivo logo_django.png que está guardado en la carpeta media/imagenes
